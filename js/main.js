@@ -1,18 +1,18 @@
-var values = [[1, "rt"], [2, true], [3, false], [4, 1], [5, {}], [6, "2"], [7], []];
+"use strict";
 
-autoCalc();
+var values = [[1, "rt"], [2, true], [3, false], [4, {}], [5, 3], [6, "4"], [7], []];
 
-function autoCalc() {
-  for (i = 0; i < values.length; i++) {
-    var x = values[i][0];
-    var y = values[i][1];
-    logAction(x, y, add);
-    logAction(x, y, sub);
-    logAction(x, y, multiply);
-    logAction(x, y, divide);
-    logAction(x, y, divideInteger);
-    console.log('\n');
-  }
+values.forEach(autoCalc);
+
+function autoCalc(pair) {
+  var x = pair[0];
+  var y = pair[1];
+  logAction(x, y, add);
+  logAction(x, y, sub);
+  logAction(x, y, multiply);
+  logAction(x, y, divide);
+  logAction(x, y, divideInteger);
+  console.log('\n');
 }
 
 function logAction(x, y, func) {
@@ -36,5 +36,5 @@ function divide(x, y) {
 }
 
 function divideInteger(x, y) {
-  return ((x - x % y) / y);
+  return (x - x % y) / y;
 }
