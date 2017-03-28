@@ -1,62 +1,66 @@
 header, main, footer {
-	padding: 10px;
+  padding: 10px;
+}
+
+main {
+  background-color: lightsteelblue;
+  padding-bottom: 30px;
 }
 
 #header, #footer {
-	background-color: lightgrey;
-}
-
-#main {
-	background-color: lightsteelblue;
+  background-color: lightgrey;
 }
 
 h1, footer {
-	text-align:center;	
+  text-align:center;	
 }
 
 a {
-	text-decoration:none;
+  text-decoration:none;
 }
 
 #logo a {	
-	color: red;	
-	font-size:100px;
-	margin-left:30px;
-	display: inline-block;
-	margin-right:30px;
-	float:left;
+  color: red;
+  font-size:100px;
+  margin-left:30px;
+  display: inline-block;
+  margin-right:30px;
+  float:left;
 }
 
 nav ul {
-	margin-top:60px;
+  margin-top:60px;
 }
 
 nav li {
-	display:inline-block;
-	padding:10px;
-	font-size: 24px;
+  display:inline-block;
+  padding:10px;
+  font-size: 24px;
 }
 
 section {
-	width:48.5%;
-	float:left;
-        border: solid grey;
-        box-sizing: border-box;
-        border-radius: 10px;        
+  width:49.5%;
+  float:left;
+  padding: 5px;
+  border: solid grey;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
+
 section:nth-child(even) {	
-	float:right;        
+  float:right;
 }
 
 section header, section footer{
-	text-align:center;
-        font-size: 1.5em;
+  text-align:center;
+  font-size: 1.5em;
 }
 
-section main figure{
-	width: 128px;
-	float:left;}
-	
+section figure{
+  width: 128px;
+  float:left;
+}
+
 .clear {
-	clear:both;
+  clear:both;
 }
