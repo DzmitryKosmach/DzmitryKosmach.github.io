@@ -9,10 +9,10 @@ logConsole(values, compactFor);
 logConsole(values, compactFilter);
 logConsole(arrayRange, sumFor);
 logConsole(arrayRange, sumReduce);
+logConsole(values);
 logConsole(values, unique);
 logConsole(values, last);
-excludeLast(arrayRange, 2);
-logConsole(arrayRange);
+logConsole(excludeLast(arrayRange, 2));
 
 function logIsArray(value) {
   console.log(value, ': ' + isArrayClass(value) + ' : ' + isArrayConstructor(value) + ' : ' +
@@ -55,27 +55,25 @@ function isObject(arg) {
   return typeof arg === 'object';
 }
 
-function range() {
-  var stepValue = (arguments[2] || 1);
-  var endValue;
-  var startValue = 0;
-  var array = [];
-  if (arguments[1]) {
-    endValue = arguments[1];
-    startValue = arguments[0];
-  } else {
-    endValue = arguments[0];
+function range(firstValue, secondValue, stepArray = 1) {
+  var startValue = !secondValue ? 0 : firstValue ? firstValue : 0;
+  var lengthArray = 0;
+  var delta = (secondValue || firstValue) - startValue;
+  var resultArray = [];
+  if ((delta > 0 && stepArray > 0) || (delta < 0 && stepArray < 0)) {
+    lengthArray = Math.abs(delta / stepArray);
   }
-  for (var i = startValue; i < endValue; i += stepValue) {
-    array.push(i);
+  for (var i = 0; i < lengthArray; i++) {
+    resultArray.push(startValue);
+    startValue += stepArray;
   }
-  return array;
+  return resultArray;
 }
 
 function compactFor(array) {
   var compactArray = [];
   for (var i = 0; i < array.length; i++) {
-    if (!!array[i]) {
+    if (array[i]) {
       compactArray.push(array[i]);
     }
   }
@@ -84,7 +82,7 @@ function compactFor(array) {
 
 function compactFilter(array) {
   var compactArray = array.filter(function (item) {
-    return !!item;
+    return item;
   });
   return compactArray;
 }
@@ -105,8 +103,7 @@ function sumReduce(array) {
 
 function unique(array) {
   var uniqueArray = [];
-  array.forEach(function () {
-    var index = arguments[1];
+  array.forEach(function (value, index) {
     if (uniqueArray.every(function (item) {
       return !(item === array[index]);
     })) {
@@ -122,6 +119,7 @@ function last(array) {
 
 function excludeLast(array, exclude = 1) {
   if (exclude > 0) {
-    array.length -= exclude;
+    return array.slice(0, array.length - exclude);
   }
+  return array.slice();
 }
