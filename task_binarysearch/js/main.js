@@ -34,7 +34,7 @@ function binarySearch(array, value) {
 function binarySearchRecursion(array, value) {
   var index = -1;
   var low = arguments[2] || 0;
-  var high = arguments[3] || array.length;
+  var high = arguments[3] === 0 ? 0 : arguments[3] || array.length;
   var middle = low + (high - low >> 1);
   if (value === array[middle]) {
     return index = middle;
@@ -47,9 +47,8 @@ function binarySearchRecursion(array, value) {
   }
   if (low >= high) {
     return index;
-  } else {
-    return binarySearchRecursion(array, value, low, high);
   }
+  return binarySearchRecursion(array, value, low, high);
 }
 
 function timingDecorator(func, timer) {
