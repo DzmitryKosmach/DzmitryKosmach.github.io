@@ -103,10 +103,11 @@ function sumReduce(array) {
 
 function unique(array) {
   var uniqueArray = [];
-  array.forEach(function (value, index) {
-    if (uniqueArray.every(function (item) {
+  array.forEach(function (value, index) {    
+    var uniqueItem = uniqueArray.every(function (item) {
       return !(item === array[index]);
-    })) {
+    });    
+    if (uniqueItem) {
       uniqueArray.push(array[index]);
     }
   });
