@@ -1,18 +1,21 @@
-function LastFmRequest(reguestMethod, artist, album, api_key) {
-  var url = "http://ws.audioscrobbler.com/2.0";
-  var reguestMethod = reguestMethod ? "/?method=" + reguestMethod : "";
-  var artist = artist ? "&artist=" + artist : "";
-  var album = album ? "&album=" + album : "";
-  var apiKey = api_key ? "&api_key=" + api_key : "";
-  var format = "&format=json";
-  this.queryParams = url + reguestMethod + artist + album + apiKey + format;
+function LastFmRequest() {  
 }
+
+LastFmRequest.URL = "http://ws.audioscrobbler.com/2.0";
+LastFmRequest.API_KEY = "61d6600170ff0cf825a3ee62d4bd7fa6";
+LastFmRequest.FORMAT_RESPONSE = "json";
 
 LastFmRequest.prototype = Object.create(Request.prototype);
 LastFmRequest.prototype.constructor = LastFmRequest;
 
-LastFmRequest.prototype.load = function () {
-  Request.prototype.load.apply(this, [this.queryParams]);
+LastFmRequest.prototype.load = function (requestMethod, artist, album) {   
+  var requestMethod = requestMethod ? "/?method=" + requestMethod : "";
+  var artist = artist ? "&artist=" + artist : "";
+  var album = album ? "&album=" + album : "";
+  var apiKey = "&api_key=" + LastFmRequest.API_KEY;
+  var format = "&format=" + LastFmRequest.FORMAT_RESPONSE;
+  var queryParams = LastFmRequest.URL + requestMethod + artist + album + apiKey + format;
+  Request.prototype.load.apply(this, [queryParams]);
 }
 
 LastFmRequest.prototype.parseText = function (text) {

@@ -4,7 +4,7 @@ function Request() {
 Request.prototype.load = function (queryParams) {
   var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
   this.xhr = new XHR();
-  this.xhr.open("GET", queryParams);
+  this.xhr.open("GET", encodeURI(queryParams));  
   this.xhr.onload = this.doAfterLoad;
   this.xhr.onerror = this.doAfterError;
   this.xhr.send();

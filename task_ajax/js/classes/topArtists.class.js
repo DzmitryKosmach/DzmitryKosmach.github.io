@@ -1,10 +1,15 @@
-function TopArtists(api_key) {
-  LastFmRequest.apply(this, ["chart.gettopartists", null, null, api_key]);
+function TopArtists() {  
 }
+
+TopArtists.REQUEST_METHOD = "chart.gettopartists";
 
 TopArtists.prototype = Object.create(LastFmRequest.prototype);
 
 TopArtists.prototype.constructor = TopArtists;
+
+TopArtists.prototype.load = function () {
+  LastFmRequest.prototype.load.apply(this, [TopArtists.REQUEST_METHOD]);
+};
 
 TopArtists.prototype.doAfterLoad = function () {
   console.log("Top Artists: ");
