@@ -1,5 +1,7 @@
 function generateItemsHTML(items, stringFuncOnclick, artist) {
-  var figureTemplate = document.getElementById("figure-template").children[0];
+  var divTemplate = document.createElement("div");
+  divTemplate.innerHTML = content.figureTemplate;
+  figureTemplate = divTemplate.children[0].children[0];
   var resultHTML = "";
   var artist = artist ? artist + "," : "";
   items.forEach(function (item) {
@@ -66,18 +68,18 @@ function setTracksHTML(tracks) {
 }
 
 function drawTopArtists() {
-  currentPage = this.getAttribute("data-page");  
+  currentPage = this.getAttribute("data-page");
   topArtists.load(currentPage);
 }
 
 function drawArtistInfo(element) {
   var artist = element.getAttribute("data-item").split(",", 2)[0];
   artistGetinfo.load(artist);
-  artistTopAlbums.load(artist);  
+  artistTopAlbums.load(artist);
 }
 
 function drawAlbumInfo(element) {
-  dataArray = element.getAttribute("data-item").split(",", 2);  
+  dataArray = element.getAttribute("data-item").split(",", 2);
   var artist = dataArray[0];
   var album = dataArray[1];
   albumGetInfo.load(artist, album);
@@ -85,16 +87,4 @@ function drawAlbumInfo(element) {
 
 function randomWidthLikesVotes() {
   return (Math.floor(Math.random() * 5) + 1) * 17;
-}
-
-function toggleHiddenPages(showingIdArray) {
-  var idArray = ["top-artist-page", "artist-page", "album-page", "section-artist-matches", "section-top-artists"];
-  var attrHidden = "hidden";
-  idArray.forEach(function (id) {
-    if (showingIdArray.includes(id)) {
-      document.getElementById(id).removeAttribute(attrHidden);
-    } else {
-      document.getElementById(id).setAttribute(attrHidden, "");
-    }
-  });
 }
