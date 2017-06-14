@@ -63,8 +63,20 @@ var content = {
         '</div>'
 };
 
-function setContentInTagId(content, tagId){
-  var tagId = tagId || "content-page";
-  console.log(tagId);
-  document.getElementById(tagId).innerHTML = content;
+function setContentInTagId(fragment, content = "", tagId = "content-page"){  
+  var placeSet = fragment.getElementById(tagId);
+  placeSet.innerHTML = content;     
+  return placeSet;                         
+}
+
+function setFragmentToPage(fragment) {
+  setContentInTagId(document).appendChild(fragment);
+}
+
+function createFragment(content) {
+  var fragment = document.createDocumentFragment();
+  var div = document.createElement("div");
+  div.innerHTML = content;
+  fragment.appendChild(div.children[0]);
+  return fragment;
 }

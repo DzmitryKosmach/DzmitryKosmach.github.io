@@ -22,8 +22,8 @@ var currentPage = 1;
 var numberShowingPages = 10;
 var startPage = currentPage;
 var endPage = numberShowingPages;
-function setPaginationHTML(totalPages) {
-  var sectionPagination = document.getElementById("pagination").children[0];
+function setPaginationHTML(fragment, totalPages) {
+  var sectionPagination = fragment.getElementById("pagination").children[0];
   sectionPagination.innerHTML = "";
   if (currentPage > endPage) {
     endPage++;
@@ -54,8 +54,8 @@ function setPaginationHTML(totalPages) {
   }
 }
 
-function setTracksHTML(tracks) {
-  var sectionTracks = document.getElementById("tracks-content");
+function setTracksHTML(fragment,tracks) {
+  var sectionTracks = fragment.getElementById("tracks-content");
   sectionTracks.innerHTML = "";
   tracks.forEach(function (track) {
     var trackName = document.createElement("p");

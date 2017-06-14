@@ -13,6 +13,6 @@ ArtistTopAlbums.prototype.load = function (artist) {
 
 ArtistTopAlbums.prototype.doAfterLoad = function () {
   var artistTopAlbums = LastFmRequest.prototype.parseText.call(null, this.responseText);
-  setContentInTagId(generateItemsHTML(artistTopAlbums.topalbums.album,
+  setContentInTagId(document, generateItemsHTML(artistTopAlbums.topalbums.album,
           "drawAlbumInfo(this)", artistTopAlbums.topalbums["@attr"].artist), "albums-content");
 }

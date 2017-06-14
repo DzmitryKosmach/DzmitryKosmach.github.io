@@ -13,9 +13,10 @@ ArtistGetinfo.prototype.load = function (artist) {
 
 ArtistGetinfo.prototype.doAfterLoad = function () {
   var artistInfo = LastFmRequest.prototype.parseText.call(null, this.responseText);
-  setContentInTagId(content.artistPage);
-  setContentInTagId(artistInfo.artist.name, "artist-name");
-  document.getElementById("likes-votes").setAttribute("style", "width: " + randomWidthLikesVotes() + "px;");
-  document.getElementById("artist-about").children[0].setAttribute("src", artistInfo.artist.image[2]["#text"]);
-  document.getElementById("artist-about").children[1].innerHTML = artistInfo.artist.bio.content;
+  var fragment = createFragment(content.artistPage);
+  setContentInTagId(fragment, artistInfo.artist.name, "artist-name");
+  fragment.getElementById("likes-votes").setAttribute("style", "width: " + randomWidthLikesVotes() + "px;");
+  fragment.getElementById("artist-about").children[0].setAttribute("src", artistInfo.artist.image[2]["#text"]);
+  fragment.getElementById("artist-about").children[1].innerHTML = artistInfo.artist.bio.content;
+  setFragmentToPage(fragment);
 }

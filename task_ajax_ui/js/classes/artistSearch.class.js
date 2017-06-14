@@ -12,9 +12,10 @@ ArtistSearch.prototype.load = function (artist) {
 };
 
 ArtistSearch.prototype.doAfterLoad = function () {
-  var artistMatches = LastFmRequest.prototype.parseText.call(null, this.responseText);
-  setContentInTagId(content.topArtistPage);
-  setContentInTagId(content.sectionArtistMatches, "section-artist");
-  setContentInTagId(generateItemsHTML(artistMatches.results.artistmatches.artist,
+  var artistMatches = LastFmRequest.prototype.parseText.call(null, this.responseText);  
+  var fragment = createFragment(content.topArtistPage);
+  setContentInTagId(fragment, content.sectionArtistMatches, "section-artist");
+  setContentInTagId(fragment, generateItemsHTML(artistMatches.results.artistmatches.artist,
           "drawArtistInfo(this)"), "artists-matches-content");
+  setFragmentToPage(fragment);
 }
