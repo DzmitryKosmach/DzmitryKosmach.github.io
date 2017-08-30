@@ -1,7 +1,7 @@
 function LastFmRequest() {  
 }
 
-LastFmRequest.URL = "http://ws.audioscrobbler.com/2.0";
+LastFmRequest.URL = "https://ws.audioscrobbler.com/2.0";
 LastFmRequest.API_KEY = "61d6600170ff0cf825a3ee62d4bd7fa6";
 LastFmRequest.FORMAT_RESPONSE = "json";
 
